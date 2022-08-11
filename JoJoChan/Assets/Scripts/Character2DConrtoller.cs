@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Character2DConrtoller : MonoBehaviour
 {
-    public float MovementSpeed = 5;
-    public float JumpForce = 80;
+    public float MovementSpeed = 10;
+    public float JumpForce = 50;
+
+    public Animator animator;
 
     private Rigidbody2D _rigidbody;
 
@@ -16,6 +18,8 @@ public class Character2DConrtoller : MonoBehaviour
     {
         var movement = Input.GetAxis("Horizontal");
         transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed;
+
+        animator.SetFloat("Speed", Mathf.Abs(movement));
 
         if (!Mathf.Approximately(0, movement))
         {
