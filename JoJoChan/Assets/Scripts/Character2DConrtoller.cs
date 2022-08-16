@@ -15,7 +15,6 @@ public class Character2DConrtoller : MonoBehaviour
 
     [Header("Events")]
     [Space]
-
     public UnityEvent OnLandEvent;
 
     [System.Serializable]
@@ -31,7 +30,6 @@ public class Character2DConrtoller : MonoBehaviour
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
-
     }
 
     private void Start()
@@ -66,11 +64,14 @@ public class Character2DConrtoller : MonoBehaviour
 
     private void Update()
     {
-
         if (Input.GetButtonDown("Jump") && m_Grounded)
         {
             animator.SetBool("IsJumping", true);
             _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
+        }
+        if (Input.GetButtonUp("Jump") && _rigidbody.velocity.y > 0)
+        {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.3f);
         }
 
         var movement = Input.GetAxis("Horizontal");
