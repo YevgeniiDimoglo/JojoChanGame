@@ -128,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Majo_idle_0
+      name: majo_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d0cef38ce3b1d4428ef7421bbcc3e83
-      internalID: 1561893415
+      spriteID: 8633aadb632324748a966beda424de18
+      internalID: 373799228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Majo_idle_1
+      name: majo_idle_1
       rect:
         serializedVersion: 2
         x: 36
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 946b061ac6fce704d957b83840077a23
-      internalID: 1940754108
+      spriteID: 1d3e8e215e3596541abcce30c5b5e6a7
+      internalID: 182121529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Majo_idle_2
+      name: majo_idle_2
       rect:
         serializedVersion: 2
         x: 72
@@ -184,8 +184,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea70635a27ed8564c9ec3b8c7a8c7a9b
-      internalID: -387200881
+      spriteID: af1c3057597d7d940a14d5acd2352f41
+      internalID: -76356942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: majo_idle_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a6a566954768f4084880b2db69dc4b
+      internalID: 1176390510
       vertices: []
       indices: 
       edges: []
@@ -201,9 +222,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Majo_idle_1: 1940754108
-      Majo_idle_0: 1561893415
-      Majo_idle_2: -387200881
+      majo_idle_0: 373799228
+      majo_idle_1: 182121529
+      majo_idle_2: -76356942
+      majo_idle_3: 1176390510
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
