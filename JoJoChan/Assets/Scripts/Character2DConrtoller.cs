@@ -83,5 +83,7 @@ public class Character2DConrtoller : MonoBehaviour
         {
             transform.rotation = movement < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
         }
+
+        animator.SetFloat("velocity.y", _rigidbody.velocity.y);
     }
 }

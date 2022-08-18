@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f300da26e029e564a9f8ee56f74d59a0
+guid: 32dc3be74c2b49346aec17416f00e14f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -112,23 +112,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: majo_idle_0
+      name: majo_fall_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8633aadb632324748a966beda424de18
-      internalID: 373799228
+      spriteID: 9047f16ce6b677b449f51013a6b78029
+      internalID: -923416411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: majo_idle_1
+      name: majo_fall_1
       rect:
         serializedVersion: 2
         x: 36
@@ -163,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d3e8e215e3596541abcce30c5b5e6a7
-      internalID: 182121529
+      spriteID: 874a26dce5e1bcd4488b7a888a4ba469
+      internalID: -1572178134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: majo_idle_2
+      name: majo_fall_2
       rect:
         serializedVersion: 2
         x: 72
@@ -184,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af1c3057597d7d940a14d5acd2352f41
-      internalID: -76356942
+      spriteID: af7c1e2dd1a99b44990347d658beeee5
+      internalID: -2063093449
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: majo_idle_3
+      name: majo_fall_3
       rect:
         serializedVersion: 2
         x: 108
@@ -205,8 +193,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4a6a566954768f4084880b2db69dc4b
-      internalID: 1176390510
+      spriteID: f70c2a7cc0ec96143b5df51c1f998e2a
+      internalID: -433162191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: majo_fall_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4e617b6cb4f67a498bf7c955d05b445
+      internalID: -728268243
       vertices: []
       indices: 
       edges: []
@@ -222,10 +231,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      majo_idle_0: 373799228
-      majo_idle_1: 182121529
-      majo_idle_2: -76356942
-      majo_idle_3: 1176390510
+      majo_fall_1: -923416411
+      majo_fall_3: -2063093449
+      majo_fall_2: -1572178134
+      majo_fall_0: -141063537
+      majo_fall_4: -433162191
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
