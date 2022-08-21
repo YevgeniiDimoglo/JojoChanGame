@@ -5,17 +5,20 @@ public class Character2DConrtoller : MonoBehaviour
 {
     public float MovementSpeed = 10;
     public float JumpForce = 50;
+    public int Health = 100;
 
     private bool m_Grounded;
     const float k_GroundedRadius = .2f;
 
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
+    [SerializeField] private LayerMask m_WhatIsDamageGround;                    // A mask determining what is damage to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
     [SerializeField] private Transform m_CeilingCheck;
 
     [Header("Events")]
     [Space]
     public UnityEvent OnLandEvent;
+    public UnityEvent OnCollideEvent;
 
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
@@ -43,6 +46,11 @@ public class Character2DConrtoller : MonoBehaviour
         m_Grounded = true;
     }
 
+    public void OnColliding()
+    {
+        Health -= 10;
+    }
+
     private void FixedUpdate()
     {
         bool wasGrounded = m_Grounded;
@@ -58,6 +66,15 @@ public class Character2DConrtoller : MonoBehaviour
                 m_Grounded = true;
                 if (!wasGrounded)
                     OnLandEvent.Invoke();
+            }
+        }
+
+        Collider2D[] damageColliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsDamageGround);
+        for (int i = 0; i < damageColliders.Length; i++)
+        {
+            if (damageColliders[i].gameObject != gameObject)
+            {
+                OnCollideEvent.Invoke();
             }
         }
     }
