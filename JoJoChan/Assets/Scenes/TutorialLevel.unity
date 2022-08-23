@@ -348,6 +348,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597311abd9cf29d4189bd1fdb1555b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JojoChan: {fileID: 529303941110533846}
+  JojoChanShadow: {fileID: 1283394854}
+  elapsedTime: 0
 --- !u!4 &223414211
 Transform:
   m_ObjectHideFlags: 0
@@ -1387,6 +1390,7 @@ MonoBehaviour:
   MovementSpeed: 2.5
   JumpForce: 0.5
   Health: 100
+  CharacterState: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -1591,6 +1595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1362330438}
   - component: {fileID: 1362330439}
+  - component: {fileID: 1362330440}
   m_Layer: 5
   m_Name: Liquid
   m_TagString: Untagged
@@ -1670,6 +1675,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1362330440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362330437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e036f3d744ef3942b2323e12086b877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: {fileID: 223414210}
 --- !u!1 &1443929786
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,7 +2422,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 2.5
   JumpForce: 0.5
-  Health: 50
+  Health: 1
+  CharacterState: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 64

@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Character2DConrtoller : MonoBehaviour
 {
     public float MovementSpeed = 10;
     public float JumpForce = 50;
-    public int Health = 100;
-
+    public int Health = 1;
+    public int CharacterState = 1;                                              // 1 - usual state
+                                                                                // 2 - shadow state
+                                                                                // 0 - death state
     private bool m_Grounded;
     const float k_GroundedRadius = .2f;
 
@@ -48,7 +51,7 @@ public class Character2DConrtoller : MonoBehaviour
 
     public void OnColliding()
     {
-        Health -= 10;
+        Health -= 1;
     }
 
     private void FixedUpdate()
@@ -81,26 +84,46 @@ public class Character2DConrtoller : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") && m_Grounded)
+        if (CharacterState == 2)
         {
-            animator.SetBool("IsJumping", true);
-            _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
-        }
-        if (Input.GetButtonUp("Jump") && _rigidbody.velocity.y > 0)
-        {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.3f);
+            _rigidbody.isKinematic = true;
+            GetComponent<Collider2D>().enabled = false;
+            animator.enabled = false;
         }
 
-        var movement = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed;
-
-        animator.SetFloat("Speed", Mathf.Abs(movement));
-
-        if (!Mathf.Approximately(0, movement))
+        if (CharacterState != 2)
         {
-            transform.rotation = movement < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+            if (Input.GetButtonDown("Jump") && m_Grounded)
+            {
+                animator.SetBool("IsJumping", true);
+                _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
+            }
+            if (Input.GetButtonUp("Jump") && _rigidbody.velocity.y > 0)
+            {
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.3f);
+            }
+
+            var movement = Input.GetAxis("Horizontal");
+
+            transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed;
+
+            animator.SetFloat("Speed", Mathf.Abs(movement));
+
+            if (!Mathf.Approximately(0, movement))
+            {
+                transform.rotation = movement < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+            }
+
+            animator.SetFloat("velocity.y", _rigidbody.velocity.y);
+
+            _rigidbody.isKinematic = false;
+            GetComponent<Collider2D>().enabled = true;
+            animator.enabled = true;
         }
 
-        animator.SetFloat("velocity.y", _rigidbody.velocity.y);
+        if (Health <= 0)
+        {
+            SceneManager.LoadScene("TutorialLevel");
+        }
     }
 }
