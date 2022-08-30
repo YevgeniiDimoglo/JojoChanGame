@@ -8,14 +8,14 @@ public class PowerUse : MonoBehaviour
     public Character2DConrtoller JojoChan;
     public Character2DConrtoller JojoChanShadow;
 
-    public float elapsedTime;
+    public float currentTime;
 
     // Start is called before the first frame update
     void Start()
     {
         JojoChan.gameObject.SetActive(true);
         JojoChanShadow.gameObject.SetActive(false);
-        elapsedTime = 10.0f;
+        currentTime = .0f;
     }
 
     // Update is called once per frame
@@ -40,16 +40,16 @@ public class PowerUse : MonoBehaviour
 
         if (JojoChan.CharacterState == 2)
         {
-            elapsedTime -= Time.deltaTime;
+            currentTime -= Time.deltaTime;
         }
 
-        if (elapsedTime <= 0)
+        if (currentTime < 0)
         {
             JojoChan.gameObject.SetActive(true);
             JojoChan.CharacterState = 1;
             JojoChanShadow.gameObject.SetActive(false);
             JojoChan.transform.position = JojoChanShadow.transform.position;
-            elapsedTime = 10.0f;
+            currentTime = 0.0f;
         }
     }
 }

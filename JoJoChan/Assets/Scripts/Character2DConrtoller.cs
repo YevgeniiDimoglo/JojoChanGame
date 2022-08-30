@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class Character2DConrtoller : MonoBehaviour
 {
+    public PowerUse power;
+
     public float MovementSpeed = 10;
     public float JumpForce = 50;
     public int Health = 1;
@@ -15,6 +17,8 @@ public class Character2DConrtoller : MonoBehaviour
 
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private LayerMask m_WhatIsDamageGround;                    // A mask determining what is damage to the character
+    [SerializeField] private LayerMask m_WhatIsPotion;                          // A mask determining what is potion to the character
+    [SerializeField] private LayerMask m_WhatIsDoor;                          // A mask determining what is door to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
     [SerializeField] private Transform m_CeilingCheck;
 
@@ -22,6 +26,8 @@ public class Character2DConrtoller : MonoBehaviour
     [Space]
     public UnityEvent OnLandEvent;
     public UnityEvent OnCollideEvent;
+    public UnityEvent OnCollidePotionEvent;
+    public UnityEvent OnCollideDoorEvent;
 
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
@@ -54,6 +60,18 @@ public class Character2DConrtoller : MonoBehaviour
         Health -= 1;
     }
 
+    public void OnCollidingPotion()
+    {
+        Collider2D[] potionColliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsPotion);
+        Destroy(potionColliders[0].gameObject);
+        power.currentTime += 5.0f;
+    }
+
+    public void OnCollidingDoor()
+    {
+        power.currentTime = .0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
     private void FixedUpdate()
     {
         bool wasGrounded = m_Grounded;
@@ -78,6 +96,24 @@ public class Character2DConrtoller : MonoBehaviour
             if (damageColliders[i].gameObject != gameObject)
             {
                 OnCollideEvent.Invoke();
+            }
+        }
+
+        Collider2D[] potionColliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsPotion);
+        for (int i = 0; i < potionColliders.Length; i++)
+        {
+            if (potionColliders[i].gameObject != gameObject)
+            {
+                OnCollidePotionEvent.Invoke();
+            }
+        }
+
+        Collider2D[] doorColliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsDoor);
+        for (int i = 0; i < doorColliders.Length; i++)
+        {
+            if (doorColliders[i].gameObject != gameObject)
+            {
+                OnCollideDoorEvent.Invoke();
             }
         }
     }
@@ -123,7 +159,7 @@ public class Character2DConrtoller : MonoBehaviour
 
         if (Health <= 0)
         {
-            SceneManager.LoadScene("TutorialLevel");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
