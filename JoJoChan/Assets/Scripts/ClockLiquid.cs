@@ -19,7 +19,7 @@ public class ClockLiquid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ColorValue = power.elapsedTime;
-        _spriteRender.color = new Color(1.0f, 0.0f, 0.0f, 1.0f * ColorValue * 0.1f);
+        ColorValue = power.currentTime;
+        _spriteRender.color = new Color(1.0f, 0.0f, 0.0f, 1.0f * ColorValue * 0.06f);
     }
 }
