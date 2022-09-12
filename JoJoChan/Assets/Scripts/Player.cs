@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public float MovementSpeed = 10;
     public float JumpForce = 50;
+    public int Health;
+
     private bool moveable = true;
 
     private bool m_Grounded;
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
         _rigidbody = transform.GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _boxCollider2D = transform.GetComponent<BoxCollider2D>();
+        Health = 1;
     }
 
     // Update is called once per frame
