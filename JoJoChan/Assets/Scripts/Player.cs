@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         // Jump
         if (Input.GetButtonDown("Jump") && m_Grounded && moveable)
         {
-            animator.SetBool("IsJumping", true);
+            Debug.Log("JUMP");
             _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
         }
         if (Input.GetButtonUp("Jump") && _rigidbody.velocity.y > 0 && animator.GetBool("IsJumping") && !animator.GetBool("WallJump"))
@@ -69,11 +69,6 @@ public class Player : MonoBehaviour
             transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed;
 
             animator.SetFloat("Speed", Mathf.Abs(movement));
-
-            if (_rigidbody.velocity.x != 0 && m_Grounded)
-            {
-                _rigidbody.velocity = Vector2.zero;
-            }
         }
     }
 
@@ -98,9 +93,15 @@ public class Player : MonoBehaviour
         _rigidbody.AddForce(v, ForceMode2D.Impulse);
 
         Debug.Log(angle + ":" + v);
-        Invoke("freeMove", 0.5f);
+        Invoke("endWallJump", 0.5f);
 
         animator.SetFloat("Speed", 0.5f);
+    }
+
+    public void endWallJump()
+    {
+        freeMove();
+        _rigidbody.velocity = new Vector2(_rigidbody.velocity.y * .1f, _rigidbody.velocity.y);
     }
 
     public void lockMove()
