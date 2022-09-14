@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject jojoChanPrefab;
+    private GameObject dummy;
+
     public float MovementSpeed = 10;
     public float JumpForce = 50;
     public int Health;
 
     private bool moveable = true;
+    private bool TheWorldActive = false;
 
     private bool m_Grounded;
     private bool m_Walled;
@@ -16,6 +20,8 @@ public class Player : MonoBehaviour
     public Animator animator;
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _boxCollider2D;
+    private SpriteRenderer m_SpriteRenderer;
+    private Color m_NewColor;
 
     private void Awake()
     {
@@ -53,6 +59,20 @@ public class Player : MonoBehaviour
 
         animator.SetFloat("velocity.y", _rigidbody.velocity.y);
         animator.SetBool("IsJumping", !m_Grounded);
+
+        if (Input.GetKeyDown("f"))
+        {
+            ChangeState();
+
+            if (!TheWorldActive)
+            {
+                SpawnDummy();
+            }
+            else
+            {
+                DestroyDummy();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -123,5 +143,35 @@ public class Player : MonoBehaviour
     private bool isWalled()
     {
         return transform.Find("WallCheck").GetComponent<WallCheck>().touchWall;
+    }
+
+    private void ChangeState()
+    {
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_NewColor = new Color(1, 1, 1);
+
+        if (m_SpriteRenderer.color.a == 0.5f)
+        {
+            m_NewColor.a = 1.0f;
+            m_SpriteRenderer.color = m_NewColor;
+        }
+        else
+        {
+            m_NewColor.a = 0.5f;
+            m_SpriteRenderer.color = m_NewColor;
+        }
+
+    }
+
+    private void SpawnDummy()
+    {
+        dummy = Instantiate(jojoChanPrefab, transform.position, Quaternion.identity);
+        TheWorldActive = true;
+    }
+
+    private void DestroyDummy()
+    {
+        Destroy(dummy);
+        TheWorldActive = false;
     }
 }

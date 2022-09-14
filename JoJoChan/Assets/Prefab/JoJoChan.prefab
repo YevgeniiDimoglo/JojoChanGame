@@ -76,9 +76,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 246446489
+  m_SortingLayer: 3
+  m_SortingOrder: 1
   m_Sprite: {fileID: 373799228, guid: f300da26e029e564a9f8ee56f74d59a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -149,8 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e42938dbd08b0a4cbe48bcf76e9a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jojoChanPrefab: {fileID: 0}
   MovementSpeed: 5
   JumpForce: 7
+  Health: 0
   animator: {fileID: 1349427992859047102}
 --- !u!95 &1349427992859047102
 Animator:
