@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
         // Jump
         if (Input.GetButtonDown("Jump") && m_Grounded && moveable)
         {
-            Debug.Log("JUMP");
             _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
         }
         if (Input.GetButtonUp("Jump") && _rigidbody.velocity.y > 0 && animator.GetBool("IsJumping") && !animator.GetBool("WallJump"))
