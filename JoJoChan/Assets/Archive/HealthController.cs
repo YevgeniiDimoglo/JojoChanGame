@@ -8,7 +8,7 @@ public class HealthController : MonoBehaviour
 {
     public TMP_Text healthCounter;
 
-    public Character2DConrtoller characterController;
+    public Player characterController;
 
     // Start is called before the first frame update
     void Start()
