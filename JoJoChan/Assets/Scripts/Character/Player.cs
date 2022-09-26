@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float JumpForce = 50;
     public int Health;
 
+    public bool CameraControl = false;
     private bool moveable = true;
     private bool TheWorldActive = false;
 
@@ -37,11 +38,11 @@ public class Player : MonoBehaviour
         m_Grounded = isGrounded();
         m_Walled = isWalled();
         // Jump
-        if (Input.GetButtonDown("Jump") && m_Grounded && moveable)
+        if (Input.GetButtonDown("Jump") && jumpable())
         {
             _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
         }
-        if (Input.GetButtonUp("Jump") && _rigidbody.velocity.y > 0 && animator.GetBool("IsJumping") && !animator.GetBool("WallJump"))
+        if (Input.GetButtonUp("Jump") && _rigidbody.velocity.y > 0 && animator.GetBool("IsJumping") && !animator.GetBool("WallJump") && moveable)
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.3f);
         }
@@ -72,12 +73,21 @@ public class Player : MonoBehaviour
                 DestroyDummy();
             }
         }
+
+        if (Input.GetKeyDown("v"))
+        {
+            CameraControl = true;
+        }
+        if (Input.GetKeyUp("v"))
+        {
+            CameraControl = false;
+        }
     }
 
     private void FixedUpdate()
     {
         // Move
-        if (moveable)
+        if (walkable())
         {
             var movement = Input.GetAxis("Horizontal");
 
@@ -88,6 +98,10 @@ public class Player : MonoBehaviour
             transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed;
 
             animator.SetFloat("Speed", Mathf.Abs(movement));
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0);
         }
     }
 
@@ -174,5 +188,15 @@ public class Player : MonoBehaviour
     {
         Destroy(dummy);
         TheWorldActive = false;
+    }
+
+    private bool walkable()
+    {
+        return moveable && !CameraControl;
+    }
+
+    private bool jumpable()
+    {
+        return m_Grounded && moveable && !CameraControl;
     }
 }

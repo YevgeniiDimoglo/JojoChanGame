@@ -20,8 +20,29 @@ public class FollowPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (playerTransform != null && !player.animator.GetCurrentAnimatorStateInfo(0).IsName("MajoIdle"))
+        Camera camera = gameObject.GetComponent<Camera>();
+        if (player.CameraControl)
         {
+            if (camera.orthographicSize < 4.0f)
+            {
+                camera.orthographicSize += 0.05f;
+            }
+            else
+            {
+                camera.orthographicSize = 4.0f;
+            }
+            transform.position += new Vector3(Input.GetAxis("Horizontal") * 0.05f, Input.GetAxis("Vertical") * 0.05f);
+        }
+        else
+        {
+            if (camera.orthographicSize > 3.0f)
+            {
+                camera.orthographicSize -= 0.05f;
+            }
+            else
+            {
+                camera.orthographicSize = 3.0f;
+            }
             Vector3 targetPostion = playerTransform.position + new Vector3(0, 0, -10f);
 
             transform.position = Vector3.SmoothDamp(transform.position, targetPostion, ref velocity, smoothTime);
