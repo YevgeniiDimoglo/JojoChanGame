@@ -178,8 +178,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jojoChanPrefab: {fileID: 1349427992859047090, guid: cc561997a74554d4494c0b8aa8fbd44d, type: 3}
   MovementSpeed: 5
-  JumpForce: 7
+  JumpForce: 10
   Health: 0
+  CameraControl: 0
   animator: {fileID: 166158090}
 --- !u!50 &166158092
 Rigidbody2D:
@@ -510,6 +511,10 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.r
       value: 0.17807047
       objectReference: {fileID: 0}
+    - target: {fileID: 5986084166118597545, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5986084166118597547, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -554,7 +559,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5986084166118597548, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5986084166118597548, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
 --- !u!1 &904451764
 GameObject:
