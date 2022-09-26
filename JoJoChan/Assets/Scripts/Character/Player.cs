@@ -159,12 +159,14 @@ public class Player : MonoBehaviour
             m_NewColor.a = 0.5f;
             m_SpriteRenderer.color = m_NewColor;
         }
-
     }
 
     private void SpawnDummy()
     {
-        dummy = Instantiate(jojoChanPrefab, transform.position, Quaternion.identity);
+        dummy = Instantiate(jojoChanPrefab, transform.position, transform.rotation);
+
+        dummy.GetComponent<Animator>().Play(animator.GetCurrentAnimatorStateInfo(0).shortNameHash, 0, animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+
         TheWorldActive = true;
     }
 
