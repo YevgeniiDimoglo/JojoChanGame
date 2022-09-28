@@ -50,13 +50,13 @@ public class Player : MonoBehaviour
         }
 
         // WallJump
-        if (Input.GetButtonDown("Jump") && Input.GetAxis("Horizontal") != 0 && m_Walled && !m_Grounded)
+        if (Input.GetButtonDown("Jump") && Input.GetAxis("Horizontal") != 0 && m_Walled && !m_Grounded && !animator.GetBool("WallJump"))
         {
             lockMove();
             animator.SetBool("WallJump", true);
             _rigidbody.velocity = new Vector2();
             _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-            Invoke("wallJump", 0.33f);
+            Invoke("wallJump", 0.25f);
         }
 
         animator.SetFloat("velocity.y", _rigidbody.velocity.y);
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
             {
                 transform.rotation = movement < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
             }
-            transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed;
+            _rigidbody.velocity = new Vector2((!m_Walled) ? movement * MovementSpeed : 0, _rigidbody.velocity.y);
 
             animator.SetFloat("Speed", Mathf.Abs(movement));
         }
@@ -127,7 +127,6 @@ public class Player : MonoBehaviour
         Vector2 v = new Vector2(JumpForce * Mathf.Cos(angle * Mathf.Deg2Rad), JumpForce * Mathf.Sin(angle * Mathf.Deg2Rad));
         _rigidbody.AddForce(v, ForceMode2D.Impulse);
 
-        Debug.Log(angle + ":" + v);
         Invoke("endWallJump", 0.5f);
 
         animator.SetFloat("Speed", 0.5f);
