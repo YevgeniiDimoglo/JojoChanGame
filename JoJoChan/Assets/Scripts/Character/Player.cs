@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float MovementSpeed = 10;
     public float JumpForce = 50;
     public int Health;
+    public float PowerCapacity;
 
     public bool CameraControl = false;
     private bool moveable = true;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         _boxCollider2D = transform.GetComponent<BoxCollider2D>();
         Health = 1;
+        PowerCapacity = 0;
     }
 
     // Update is called once per frame
@@ -103,6 +105,8 @@ public class Player : MonoBehaviour
         {
             animator.SetFloat("Speed", 0);
         }
+
+        print(PowerCapacity);
     }
 
     public void wallJump()
