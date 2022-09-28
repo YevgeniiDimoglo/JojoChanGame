@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PotionTrigger : MonoBehaviour
 {
+    [SerializeField] private int RecoverPower;
     public GameObject player;
     private Player playerScript;
     public bool trigger;
-
 
     private void Update()
     {
@@ -16,6 +16,7 @@ public class PotionTrigger : MonoBehaviour
             UsePotion();
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player") // Tag: Player
@@ -30,12 +31,10 @@ public class PotionTrigger : MonoBehaviour
         player = null;
     }
 
-    void UsePotion()
+    private void UsePotion()
     {
-
         playerScript = player.GetComponent<Player>();
-        playerScript.PowerCapacity += 20;
+        playerScript.PowerCapacity += RecoverPower;
         Destroy(gameObject);
-
     }
 }
