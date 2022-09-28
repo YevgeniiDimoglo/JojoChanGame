@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jojoChanPrefab: {fileID: 1349427992859047090, guid: cc561997a74554d4494c0b8aa8fbd44d, type: 3}
   MovementSpeed: 5
-  JumpForce: 10
+  JumpForce: 12
   Health: 0
   PowerCapacity: 0
   CameraControl: 0
@@ -217,7 +217,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -692,8 +692,20 @@ PrefabInstance:
       value: 0.17807047
       objectReference: {fileID: 0}
     - target: {fileID: 5986084166118597545, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
+      propertyPath: x_dist
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986084166118597545, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986084166118597545, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
+      propertyPath: moveSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986084166118597545, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
+      propertyPath: smoothTime
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5986084166118597547, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
       propertyPath: m_RootOrder
@@ -701,15 +713,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5986084166118597547, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.91
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5986084166118597547, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.81
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5986084166118597547, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5986084166118597547, guid: b52ae73c6a8ee044d9d32735d662e5d5, type: 3}
       propertyPath: m_LocalRotation.w
