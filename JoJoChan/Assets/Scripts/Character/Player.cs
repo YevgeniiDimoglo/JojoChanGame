@@ -105,8 +105,6 @@ public class Player : MonoBehaviour
         {
             animator.SetFloat("Speed", 0);
         }
-
-        print(PowerCapacity);
     }
 
     public void wallJump()

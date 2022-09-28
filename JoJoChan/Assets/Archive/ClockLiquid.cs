@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClockLiquid : MonoBehaviour
 {
-    public PowerUse power;
+    public Player player;
 
     private float ColorValue;
 
@@ -19,7 +19,7 @@ public class ClockLiquid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ColorValue = power.currentTime;
-        _spriteRender.color = new Color(1.0f, 0.0f, 0.0f, 1.0f * ColorValue * 0.06f);
+        ColorValue = player.PowerCapacity;
+        _spriteRender.color = new Color(1.0f, 0.0f, 0.0f, 1.0f * ColorValue * 0.01f);
     }
 }
