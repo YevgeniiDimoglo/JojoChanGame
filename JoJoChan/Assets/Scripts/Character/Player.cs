@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     public bool CameraControl = false;
     private bool moveable = true;
-    private bool TheWorldActive = false;
+    public bool TheWorldActive = false;
 
     private bool m_Grounded;
     private bool m_Walled;
