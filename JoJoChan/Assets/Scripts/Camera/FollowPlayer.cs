@@ -74,5 +74,10 @@ public class FollowPlayer : MonoBehaviour
 
             transform.position = Vector3.SmoothDamp(transform.position, targetPostion, ref velocity, smoothTime_adjustment);
         }
+
+        foreach (Camera c in GetComponentsInChildren<Camera>())
+        {
+            c.orthographicSize = camera.orthographicSize;
+        }
     }
 }
