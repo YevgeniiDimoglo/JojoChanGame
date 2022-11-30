@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer m_SpriteRenderer;
     private Color m_NewColor;
 
+    private Vector2 InputDirection;
+
     private void Awake()
     {
         _rigidbody = transform.GetComponent<Rigidbody2D>();
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour
         _boxCollider2D = transform.GetComponent<BoxCollider2D>();
         Health = 1;
         PowerCapacity = 0;
+        InputDirection = Vector2.zero;
     }
 
     // Update is called once per frame
@@ -39,6 +42,11 @@ public class Player : MonoBehaviour
     {
         m_Grounded = isGrounded();
         m_Walled = isWalled();
+
+        // Move Input
+        InputDirection.x = Input.GetAxis("Horizontal");
+        InputDirection.y = Input.GetAxis("Vertical");
+
         // Jump
         if (Input.GetButtonDown("Jump") && jumpable())
         {
@@ -79,6 +87,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown("v"))
         {
             CameraControl = true;
+            InputDirection.x = 0;
         }
         if (Input.GetKeyUp("v"))
         {
@@ -91,18 +100,20 @@ public class Player : MonoBehaviour
         // Move
         if (walkable())
         {
-            var movement = Input.GetAxis("Horizontal");
-
-            if (!Mathf.Approximately(0, movement))
+            if (!Mathf.Approximately(0, InputDirection.x))
             {
-                transform.rotation = movement < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+                transform.rotation = InputDirection.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
             }
-            _rigidbody.velocity = new Vector2((!m_Walled) ? movement * MovementSpeed : 0, _rigidbody.velocity.y);
+            _rigidbody.velocity = new Vector2((!m_Walled) ? InputDirection.x * MovementSpeed : 0, _rigidbody.velocity.y);
 
-            animator.SetFloat("Speed", Mathf.Abs(movement));
+            animator.SetFloat("Speed", Mathf.Abs(InputDirection.x));
         }
         else
         {
+            if (isGrounded())
+            {
+                _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
+            }
             animator.SetFloat("Speed", 0);
         }
     }
