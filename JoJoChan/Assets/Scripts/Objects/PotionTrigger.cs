@@ -34,7 +34,7 @@ public class PotionTrigger : MonoBehaviour
     private void UsePotion()
     {
         playerScript = player.GetComponent<Player>();
-        playerScript.PowerCapacity += RecoverPower;
+        playerScript.modPower(RecoverPower);
         Destroy(gameObject);
     }
 }
