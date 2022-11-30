@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float JumpForce = 50;
     public int Health;
     public float PowerCapacity;
+    public float maxPowerCapacity = 100;
 
     public bool CameraControl = false;
     private bool moveable = true;
@@ -158,6 +159,12 @@ public class Player : MonoBehaviour
     {
         if (!animator.GetBool("WallJump"))
             moveable = true;
+    }
+
+    public void modPower(float value)
+    {
+        PowerCapacity += value;
+        PowerCapacity = Mathf.Clamp(PowerCapacity, 0.0f, maxPowerCapacity);
     }
 
     private bool isGrounded()
