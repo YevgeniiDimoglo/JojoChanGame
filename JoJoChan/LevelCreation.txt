@@ -1,0 +1,26 @@
+1. Add form prefabs:
+  a) Add JoJoChan
+  b) Add UI
+  c) Add Main Camera
+2. Fill dependency
+  a) in UI in Canvas in Render Camera - add No Post Cam
+  b) in UI in Clock in Mask in Power Bar - add JoJoChan
+  c) in UI in HealthCounterText in Health Controller in Character Controller - add JoJoChan
+  d) in Main Camera in Gray Scale in Player - add JoJoChan
+3. Add Grid
+  a) Add empty Grid
+  b) Add Grid Component
+  c) Add empty child Wall
+  d) Add empty child Floor
+4. Change Layer to Wall and Ground
+5. Add Tilemap
+  a) Add Tilemap
+  b) Add Tilemap Renderer
+  c) Add Tilemap Collider 2D
+  d) Add Rigidbody 2D
+  e) Add Composite Collider 2D
+  f) Add Physics material to Floor
+  g) Check used by Composite in Floor
+5. Paint Level
+  a) Paint Walls
+  b) Paint Floor on top of Walls with 0 Opacity
