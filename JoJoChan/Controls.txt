@@ -1,0 +1,4 @@
+AD - Move (left, right)
+Space - Jump
+F - Use
+V + arrows - Zoom
