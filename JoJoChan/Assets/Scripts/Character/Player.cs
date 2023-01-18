@@ -6,6 +6,15 @@ public class Player : MonoBehaviour
 {
     public GameObject jojoChanPrefab;
     private GameObject dummy;
+    enum powerStates
+    {
+        UsusalForm,
+        TWolf,
+        KCrow,
+        KittyQ,
+        MouseH,
+        SnakeP,
+    }
 
     public float MovementSpeed = 10;
     public float JumpForce = 50;
@@ -15,7 +24,6 @@ public class Player : MonoBehaviour
 
     public bool CameraControl = false;
     private bool moveable = true;
-    public bool TheWorldActive = false;
 
     private bool m_Grounded;
     private bool m_Walled;
@@ -28,6 +36,14 @@ public class Player : MonoBehaviour
 
     private Vector2 InputDirection;
 
+    private int powerState;
+
+    public int state
+    {
+        get { return powerState; }
+        set { powerState = value; }
+    }
+
     private void Awake()
     {
         _rigidbody = transform.GetComponent<Rigidbody2D>();
@@ -36,6 +52,7 @@ public class Player : MonoBehaviour
         Health = 1;
         PowerCapacity = 0;
         InputDirection = Vector2.zero;
+        powerState = 0;
     }
 
     // Update is called once per frame
@@ -73,9 +90,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown("f"))
         {
-            ChangeState();
+            if (PowerCapacity != 0)
+            {
+                ChangeState();
+            }
 
-            if (!TheWorldActive)
+            if (powerState == (int) powerStates.TWolf)
             {
                 SpawnDummy();
             }
@@ -116,6 +136,17 @@ public class Player : MonoBehaviour
                 _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
             }
             animator.SetFloat("Speed", 0);
+        }
+
+        // Use Power
+        if (powerState != 0)
+        {
+            modPower(-10 * Time.deltaTime);
+
+            if (PowerCapacity == 0)
+            {
+                ChangeState();
+            }
         }
     }
 
@@ -179,6 +210,15 @@ public class Player : MonoBehaviour
 
     private void ChangeState()
     {
+        if (powerState == 0)
+        {
+            powerState = (int) powerStates.TWolf;
+        }
+        else
+        {
+            powerState = 0;
+        }
+
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
         m_NewColor = new Color(1, 1, 1);
 
@@ -199,14 +239,11 @@ public class Player : MonoBehaviour
         dummy = Instantiate(jojoChanPrefab, transform.position, transform.rotation);
 
         dummy.GetComponent<Animator>().Play(animator.GetCurrentAnimatorStateInfo(0).shortNameHash, 0, animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
-
-        TheWorldActive = true;
     }
 
     private void DestroyDummy()
     {
         Destroy(dummy);
-        TheWorldActive = false;
     }
 
     private bool walkable()

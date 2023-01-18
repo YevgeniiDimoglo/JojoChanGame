@@ -16,7 +16,7 @@ public class GrayScale : MonoBehaviour
 
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        if (player.TheWorldActive == true)  Graphics.Blit(source, destination, material);
+        if (player.state == 1)  Graphics.Blit(source, destination, material);
         else
         {
             Graphics.Blit(source, destination);
