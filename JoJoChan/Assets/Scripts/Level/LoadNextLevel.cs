@@ -11,7 +11,7 @@ public class LoadNextLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.visible = false;
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
